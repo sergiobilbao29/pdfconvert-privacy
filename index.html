@@ -69,7 +69,7 @@ th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:to
 <h2>5. Tus derechos</h2>
 <p>Podés pedir acceso, corrección o eliminación de los datos que tengamos sobre vos, y oponerte a su uso, escribiendo a <a href="mailto:support@pdfconvert.app">support@pdfconvert.app</a>. Respondemos en un plazo máximo de 30 días. Estos derechos se reconocen según la Ley 25.326 de Argentina, el RGPD (Unión Europea), la LGPD (Brasil) y normas similares. En Argentina, la Agencia de Acceso a la Información Pública es el órgano de control de la Ley 25.326.</p>
 
-<h2>6. Cómo borrar tus datos</h2>
+<h2 id="eliminacion-de-datos">6. Cómo borrar tus datos</h2>
 <ul>
 <li><b>Datos en tu teléfono:</b> borrá los archivos desde la pestaña Archivos, o desinstalá la app (se borra todo).</li>
 <li><b>Datos en el servidor:</b> los archivos se borran solos como se indica arriba. Para borrar antes un pedido de firma o tu mensaje de opinión, escribinos con el asunto "Eliminación de datos".</li>
@@ -126,7 +126,7 @@ th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:to
 <h2>5. Your rights</h2>
 <p>You can request access to, correction or deletion of any data we hold about you, or object to its use, by writing to <a href="mailto:support@pdfconvert.app">support@pdfconvert.app</a>. We reply within 30 days. These rights are granted under Argentina's Law 25,326, the GDPR (EU), the LGPD (Brazil) and similar laws.</p>
 
-<h2>6. How to delete your data</h2>
+<h2 id="data-deletion">6. How to delete your data</h2>
 <ul>
 <li><b>Data on your phone:</b> delete files from the Files tab, or uninstall the app (everything is removed).</li>
 <li><b>Data on the server:</b> files are deleted automatically as described above. To delete a signature request or a feedback message sooner, email us with the subject "Data deletion".</li>
@@ -143,11 +143,12 @@ th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:to
 <script>
 (function(){
   var q=new URLSearchParams(location.search).get('lang');
-  var l=q||((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en');
+  var l=q||(location.hash==='#eliminacion-de-datos'?'es':location.hash==='#data-deletion'?'en':null)||((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en');
   function set(x){document.documentElement.lang=x;
     document.querySelectorAll('[lang-block]').forEach(function(b){b.classList.toggle('show',b.getAttribute('lang-block')===x)});
     document.querySelectorAll('.langs button').forEach(function(b){b.classList.toggle('on',b.dataset.l===x)});}
   document.querySelectorAll('.langs button').forEach(function(b){b.onclick=function(){set(b.dataset.l)}});
   set(l);
+  if(location.hash){var el=document.querySelector(location.hash);if(el)el.scrollIntoView();}
 })();
 </script></body></html>
